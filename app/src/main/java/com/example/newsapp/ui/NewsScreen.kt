@@ -64,20 +64,6 @@ fun NewsScreen(
         }
     ) { innerPadding ->
         Column(modifier = Modifier.padding(innerPadding)) {
-            // Баннер
-            Surface(
-                color = MaterialTheme.colorScheme.tertiaryContainer,
-                modifier = Modifier.fillMaxWidth().padding(8.dp),
-                shape = MaterialTheme.shapes.medium
-            ) {
-                Text(
-                    text = "NewsApp v1.1: Полные статьи и умная фильтрация",
-                    modifier = Modifier.padding(12.dp),
-                    style = MaterialTheme.typography.labelLarge,
-                    textAlign = TextAlign.Center,
-                    fontWeight = FontWeight.Bold
-                )
-            }
 
             if (isLoading) {
                 Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
