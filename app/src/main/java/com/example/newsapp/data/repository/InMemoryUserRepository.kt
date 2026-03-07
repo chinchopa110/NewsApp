@@ -3,7 +3,7 @@ package com.example.newsapp.data.repository
 import com.example.newsapp.domain.model.Result
 import com.example.newsapp.domain.model.User
 import com.example.newsapp.domain.repository.UserRepository
-import java.util.Date
+import java.util.UUID
 
 class InMemoryUserRepository : UserRepository {
     
@@ -12,40 +12,22 @@ class InMemoryUserRepository : UserRepository {
     init {
         val testUsers = listOf(
             User(
-                id = "1",
-                username = "john_doe",
-                email = "john@example.com",
-                fullName = "John Doe",
-                avatarUrl = "https://example.com/avatars/john.jpg",
-                registeredAt = Date(),
-                isVerified = true
+                id = UUID.randomUUID().toString(),
+                username = "ivan",
+                password = "123"
             ),
             User(
-                id = "2",
-                username = "jane_smith",
-                email = "jane@example.com",
-                fullName = "Jane Smith",
-                avatarUrl = "https://example.com/avatars/jane.jpg",
-                registeredAt = Date(),
-                isVerified = true
-            ),
-            User(
-                id = "3",
-                username = "test_user",
-                email = "test@example.com",
-                fullName = "Test User",
-                avatarUrl = null,
-                registeredAt = Date(),
-                isVerified = false
+                id = UUID.randomUUID().toString(),
+                username = "maria",
+                password = "321"
             )
         )
-        
         testUsers.forEach { users[it.id] = it }
     }
     
     override suspend fun getById(id: String): Result<User> {
         return users[id]?.let { Result.Success(it) }
-            ?: Result.Error("Пользователь с ID $id не найден")
+            ?: Result.Error("Пользователь не найден")
     }
     
     override suspend fun getAll(): Result<List<User>> {
@@ -61,7 +43,7 @@ class InMemoryUserRepository : UserRepository {
         return if (users.remove(id) != null) {
             Result.Success(true)
         } else {
-            Result.Error("Пользователь с ID $id не найден")
+            Result.Error("Пользователь не найден")
         }
     }
     
@@ -70,29 +52,22 @@ class InMemoryUserRepository : UserRepository {
             users[entity.id] = entity
             Result.Success(entity)
         } else {
-            Result.Error("Пользователь с ID ${entity.id} не найден")
+            Result.Error("Пользователь не найден")
         }
     }
     
     override suspend fun getByUsername(username: String): Result<User> {
         val user = users.values.find { it.username == username }
         return user?.let { Result.Success(it) }
-            ?: Result.Error("Пользователь с именем $username не найден")
+            ?: Result.Error("Пользователь $username не найден")
     }
     
-    override suspend fun getByEmail(email: String): Result<User> {
-        val user = users.values.find { it.email == email }
-        return user?.let { Result.Success(it) }
-            ?: Result.Error("Пользователь с email $email не найден")
-    }
-    
-    override suspend fun verifyUser(userId: String): Result<Boolean> {
-        val user = users[userId]
-        return if (user != null) {
-            users[userId] = user.copy(isVerified = true)
-            Result.Success(true)
-        } else {
-            Result.Error("Пользователь с ID $userId не найден")
+    override suspend fun register(user: User): Result<User> {
+        if (users.values.any { it.username == user.username }) {
+            return Result.Error("Логин уже занят")
         }
+        val newUser = user.copy(id = UUID.randomUUID().toString())
+        users[newUser.id] = newUser
+        return Result.Success(newUser)
     }
 }

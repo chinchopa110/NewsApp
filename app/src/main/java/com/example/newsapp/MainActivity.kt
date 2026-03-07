@@ -4,44 +4,47 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.runtime.*
+import com.example.newsapp.data.repository.InMemoryArticleRepository
+import com.example.newsapp.data.repository.InMemoryUserRepository
+import com.example.newsapp.ui.*
 import com.example.newsapp.ui.theme.NewsAppTheme
 
 class MainActivity : ComponentActivity() {
+    
+    private val userRepository = InMemoryUserRepository()
+    private val articleRepository = InMemoryArticleRepository()
+    
+    private val themeViewModel = ThemeViewModel()
+    private val authViewModel = AuthViewModel(userRepository)
+    private val newsViewModel = NewsViewModel(articleRepository)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            NewsAppTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
+            val isDarkTheme by themeViewModel.isDarkTheme
+            
+            NewsAppTheme(darkTheme = isDarkTheme) {
+                var currentScreen by remember { mutableStateOf("login") }
+                
+                when (currentScreen) {
+                    "login" -> LoginScreen(
+                        viewModel = authViewModel,
+                        onLoginSuccess = {
+                            currentScreen = "news"
+                        }
+                    )
+                    "news" -> NewsScreen(
+                        newsViewModel = newsViewModel,
+                        authViewModel = authViewModel,
+                        themeViewModel = themeViewModel,
+                        onLogout = {
+                            currentScreen = "login"
+                        }
                     )
                 }
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    NewsAppTheme {
-        Greeting("Android")
     }
 }
