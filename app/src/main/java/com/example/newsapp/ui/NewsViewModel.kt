@@ -36,7 +36,7 @@ class NewsViewModel(
         viewModelScope.launch {
             _isLoading.value = true
             
-            val result = articleRepository.getAll()
+            val result = articleRepository.getTopHeadlines()
 
             when (result) {
                 is Result.Success -> {

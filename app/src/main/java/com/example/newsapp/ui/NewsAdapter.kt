@@ -32,7 +32,6 @@ class NewsAdapter(
             binding.tvUrl.text = article.url
             binding.tvAuthor.text = article.author?.let { "By $it" } ?: "Unknown Author"
             
-            // Format date
             try {
                 val date = inputFormat.parse(article.publishedAt)
                 binding.tvPublishedAt.text = date?.let { outputFormat.format(it) } ?: article.publishedAt
@@ -40,7 +39,6 @@ class NewsAdapter(
                 binding.tvPublishedAt.text = article.publishedAt
             }
 
-            // Load image
             if (!article.urlToImage.isNullOrEmpty()) {
                 binding.ivArticleImage.visibility = View.VISIBLE
                 binding.ivArticleImage.load(article.urlToImage) {

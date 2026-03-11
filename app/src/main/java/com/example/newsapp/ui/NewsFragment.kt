@@ -13,7 +13,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.example.newsapp.R
-import com.example.newsapp.data.repository.InMemoryArticleRepository
+import com.example.newsapp.data.repository.NetworkArticleRepository
 import com.example.newsapp.data.repository.InMemoryUserRepository
 import com.example.newsapp.databinding.FragmentNewsBinding
 import kotlinx.coroutines.launch
@@ -28,7 +28,7 @@ class NewsFragment : Fragment() {
             @Suppress("UNCHECKED_CAST")
             override fun <T : ViewModel> create(modelClass: Class<T>): T {
                 return NewsViewModel(
-                    InMemoryArticleRepository(),
+                    NetworkArticleRepository("021cf7a054f24277aa5149a5eda6bae7"),
                     InMemoryUserRepository.getInstance(requireContext())
                 ) as T
             }
@@ -66,6 +66,10 @@ class NewsFragment : Fragment() {
             }
         }
 
+        binding.swipeRefreshLayout.setOnRefreshListener {
+            viewModel.refresh()
+        }
+
         val adapter = NewsAdapter(
             onBlockAuthor = { author ->
                 blacklistViewModel.blockAuthor(author)
@@ -89,7 +93,7 @@ class NewsFragment : Fragment() {
                 }
                 launch {
                     viewModel.isLoading.collect { isLoading ->
-                        binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
+                        binding.swipeRefreshLayout.isRefreshing = isLoading
                     }
                 }
             }

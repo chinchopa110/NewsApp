@@ -15,7 +15,7 @@
             android:id="@+id/toolbarBlacklist"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            app:title="Управление черным списком" />
+            app:title="Blacklist management" />
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.core.widget.NestedScrollView
