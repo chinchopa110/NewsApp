@@ -14,5 +14,4 @@ data class Article(
     val urlToImage: String?,
     val publishedAt: String,
     val content: String,
-    val isPublished: Boolean = true
 )
