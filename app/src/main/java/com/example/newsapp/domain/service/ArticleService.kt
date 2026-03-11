@@ -10,9 +10,9 @@ class ArticleService(
     
     override fun getServiceName(): String = "ArticleService"
 
-    suspend fun getPublishedArticles(): Result<List<Article>> {
+    suspend fun getAllArticles(): Result<List<Article>> {
         logOperation("Получение опубликованных статей")
-        return articleRepository.getPublished()
+        return articleRepository.getAll()
     }
     
     suspend fun searchArticles(query: String): Result<List<Article>> {
