@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import com.example.newsapp.R
 import com.example.newsapp.data.repository.NetworkArticleRepository
 import com.example.newsapp.data.repository.InMemoryUserRepository
@@ -31,15 +32,6 @@ class NewsFragment : Fragment() {
                     NetworkArticleRepository("021cf7a054f24277aa5149a5eda6bae7"),
                     InMemoryUserRepository.getInstance(requireContext())
                 ) as T
-            }
-        }
-    }
-
-    private val blacklistViewModel: BlacklistViewModel by viewModels {
-        object : ViewModelProvider.Factory {
-            @Suppress("UNCHECKED_CAST")
-            override fun <T : ViewModel> create(modelClass: Class<T>): T {
-                return BlacklistViewModel(InMemoryUserRepository.getInstance(requireContext())) as T
             }
         }
     }
@@ -71,15 +63,9 @@ class NewsFragment : Fragment() {
         }
 
         val adapter = NewsAdapter(
-            onBlockAuthor = { author ->
-                blacklistViewModel.blockAuthor(author)
-            },
-            onBlockSource = { id, name ->
-                if (id != null) {
-                    blacklistViewModel.blockSourceId(id)
-                } else {
-                    blacklistViewModel.blockSourceName(name)
-                }
+            onArticleClick = { article ->
+                val action = NewsFragmentDirections.actionNewsFragmentToArticleDetailFragment(article)
+                findNavController().navigate(action)
             }
         )
         binding.recyclerViewNews.adapter = adapter

@@ -14,8 +14,7 @@ import java.util.Locale
 import java.util.TimeZone
 
 class NewsAdapter(
-    private val onBlockAuthor: (String) -> Unit,
-    private val onBlockSource: (id: String?, name: String) -> Unit
+    private val onArticleClick: (Article) -> Unit
 ) : ListAdapter<Article, NewsAdapter.NewsViewHolder>(DiffCallback) {
 
     class NewsViewHolder(private val binding: ItemNewsBinding) : RecyclerView.ViewHolder(binding.root) {
@@ -25,12 +24,10 @@ class NewsAdapter(
         }
         private val outputFormat = SimpleDateFormat("dd MMM yyyy, HH:mm", Locale.getDefault())
 
-        fun bind(article: Article, onBlockAuthor: (String) -> Unit, onBlockSource: (String?, String) -> Unit) {
+        fun bind(article: Article, onArticleClick: (Article) -> Unit) {
             binding.tvTitle.text = article.title
-            binding.tvDescription.text = article.description
-            binding.tvContent.text = article.content
-            binding.tvUrl.text = article.url
             binding.tvAuthor.text = article.author?.let { "By $it" } ?: "Unknown Author"
+            binding.tvSource.text = article.source.name
             
             try {
                 val date = inputFormat.parse(article.publishedAt)
@@ -47,13 +44,9 @@ class NewsAdapter(
             } else {
                 binding.ivArticleImage.visibility = View.GONE
             }
-            
-            binding.btnBlockAuthor.setOnClickListener {
-                article.author?.let { onBlockAuthor(it) }
-            }
-            
-            binding.btnBlockSource.setOnClickListener {
-                onBlockSource(article.source.id, article.source.name)
+
+            binding.root.setOnClickListener {
+                onArticleClick(article)
             }
         }
     }
@@ -65,7 +58,7 @@ class NewsAdapter(
     }
 
     override fun onBindViewHolder(holder: NewsViewHolder, position: Int) {
-        holder.bind(getItem(position), onBlockAuthor, onBlockSource)
+        holder.bind(getItem(position), onArticleClick)
     }
 
     companion object DiffCallback : DiffUtil.ItemCallback<Article>() {
