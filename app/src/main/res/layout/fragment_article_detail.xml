@@ -82,33 +82,31 @@
                     android:background="#DDDDDD" />
 
                 <TextView
-                    android:id="@+id/tvDetailDescription"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?attr/textAppearanceBody1"
-                    android:textColor="?android:attr/textColorSecondary"
-                    android:lineSpacingExtra="4dp"
-                    tools:text="Short description..." />
-
-                <TextView
                     android:id="@+id/tvDetailContent"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
                     android:textAppearance="?attr/textAppearanceBody1"
                     android:textColor="?android:attr/textColorPrimary"
                     android:lineSpacingExtra="4dp"
                     tools:text="Full content..." />
 
                 <TextView
+                    android:id="@+id/tvReadMoreLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Читать полностью: "
+                    android:textAppearance="?attr/textAppearanceBody1"
+                    android:textColor="?android:attr/textColorPrimary" />
+
+                <TextView
                     android:id="@+id/tvDetailUrl"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="24dp"
+                    android:layout_marginTop="4dp"
                     android:autoLink="web"
-                    android:padding="8dp"
-                    android:text="Read full story online"
-                    android:textColor="?attr/colorPrimary" />
+                    android:textColor="?attr/colorPrimary"
+                    tools:text="https://example.com/article" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnDetailBlockAuthor"

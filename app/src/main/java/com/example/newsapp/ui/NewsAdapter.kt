@@ -28,6 +28,7 @@ class NewsAdapter(
             binding.tvTitle.text = article.title
             binding.tvAuthor.text = article.author?.let { "By $it" } ?: "Unknown Author"
             binding.tvSource.text = article.source.name
+            binding.tvDescription.text = article.description
             
             try {
                 val date = inputFormat.parse(article.publishedAt)

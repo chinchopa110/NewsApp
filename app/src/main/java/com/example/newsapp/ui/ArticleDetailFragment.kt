@@ -72,8 +72,11 @@ class ArticleDetailFragment : Fragment() {
     private fun setupUI(article: Article) {
         binding.tvDetailTitle.text = article.title
         binding.tvDetailSource.text = article.source.name
-        binding.tvDetailDescription.text = article.description
-        binding.tvDetailContent.text = article.content
+        
+        // Remove [+2050 chars] pattern from content
+        val cleanedContent = article.content.replace(Regex("\\[\\+\\d+\\schar[s]?\\]"), "").trim()
+        binding.tvDetailContent.text = cleanedContent
+
         binding.tvDetailUrl.text = article.url
 
         val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.US).apply {
