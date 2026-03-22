@@ -24,38 +24,73 @@ class NewsViewModel(
     private val _isLoading = MutableStateFlow(false)
     val isLoading: StateFlow<Boolean> = _isLoading
 
+    private var currentPage = 1
+    private var isLastPage = false
+    private var isCurrentlyLoadingNextPage = false
+
     init {
         viewModelScope.launch {
             userRepository.user.collectLatest { user ->
-                loadArticles(user)
+                resetAndLoad(user)
             }
         }
     }
 
-    private fun loadArticles(currentUser: User) {
+    private fun resetAndLoad(currentUser: User) {
+        currentPage = 1
+        isLastPage = false
+        _articles.value = emptyList()
+        loadArticles(currentUser, isRefresh = true)
+    }
+
+    private fun loadArticles(currentUser: User, isRefresh: Boolean = false) {
+        if (isLastPage || (isCurrentlyLoadingNextPage && !isRefresh)) return
+
         viewModelScope.launch {
-            _isLoading.value = true
+            if (isRefresh) {
+                _isLoading.value = true
+            } else {
+                isCurrentlyLoadingNextPage = true
+            }
             
-            val result = articleRepository.getTopHeadlines()
+            val result = articleRepository.getTopHeadlines(currentPage)
 
             when (result) {
                 is Result.Success -> {
-                    val filteredList = result.data.filter { article ->
-                        val authorBlocked = article.author != null && currentUser.blockedAuthors.contains(article.author)
-                        val sourceIdBlocked = article.source.id != null && currentUser.blockedSourceIds.contains(article.source.id)
-                        val sourceNameBlocked = currentUser.blockedSourceNames.contains(article.source.name)
+                    val newArticles = result.data
+                    if (newArticles.isEmpty()) {
+                        isLastPage = true
+                    } else {
+                        val filteredList = newArticles.filter { article ->
+                            val authorBlocked = article.author != null && currentUser.blockedAuthors.contains(article.author)
+                            val sourceIdBlocked = article.source.id != null && currentUser.blockedSourceIds.contains(article.source.id)
+                            val sourceNameBlocked = currentUser.blockedSourceNames.contains(article.source.name)
+                            
+                            !authorBlocked && !sourceIdBlocked && !sourceNameBlocked
+                        }
                         
-                        !authorBlocked && !sourceIdBlocked && !sourceNameBlocked
+                        if (isRefresh) {
+                            _articles.value = filteredList
+                        } else {
+                            _articles.value = _articles.value + filteredList
+                        }
+                        currentPage++
                     }
-                    _articles.value = filteredList
                 }
-                is Result.Error -> _articles.value = emptyList()
+                is Result.Error -> {
+                    if (isRefresh) _articles.value = emptyList()
+                }
             }
             _isLoading.value = false
+            isCurrentlyLoadingNextPage = false
         }
     }
     
-    fun refresh() {
+    fun loadNextPage() {
         loadArticles(userRepository.user.value)
+    }
+
+    fun refresh() {
+        resetAndLoad(userRepository.user.value)
     }
 }
