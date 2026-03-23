@@ -1,31 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/articleDetailRoot"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?android:attr/windowBackground"
-    android:fitsSystemWindows="true">
+    android:background="?android:attr/windowBackground">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarDetail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent">
+        android:background="?android:attr/windowBackground"
+        app:elevation="0dp">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbarDetail"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:navigationIcon="?attr/homeAsUpIndicator"
-            app:title="Article Detail" />
+            app:title="" />
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/scrollView"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/appBarDetail">
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -37,8 +38,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
                 android:scaleType="centerCrop"
-                android:visibility="gone"
-                tools:visibility="visible" />
+                tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -54,32 +54,45 @@
                     android:textColor="?attr/colorPrimary"
                     android:textStyle="bold"
                     android:textAllCaps="true"
-                    tools:text="BBC News" />
+                    android:letterSpacing="0.05"
+                    tools:text="SOURCE" />
 
                 <TextView
                     android:id="@+id/tvDetailTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="4dp"
                     android:textAppearance="?attr/textAppearanceHeadline5"
                     android:textColor="?android:attr/textColorPrimary"
                     android:textStyle="bold"
-                    tools:text="Headline" />
+                    tools:text="Article Title" />
 
                 <TextView
                     android:id="@+id/tvDetailAuthorAndDate"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="2dp"
                     android:textAppearance="?attr/textAppearanceCaption"
                     android:textColor="?android:attr/textColorSecondary"
-                    tools:text="By John Doe • 12 Mar 2026" />
+                    tools:text="Author • Date" />
 
+                <TextView
+                    android:id="@+id/tvDetailDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:textAppearance="?attr/textAppearanceBody2"
+                    android:textColor="?android:attr/textColorSecondary"
+                    android:alpha="1"
+                    tools:text="Description..." />
+
+                <!-- Исправленный разделитель: более контрастный цвет и меньше отступы -->
                 <View
+                    android:id="@+id/divider"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_marginVertical="16dp"
-                    android:background="#DDDDDD" />
+                    android:layout_marginVertical="8dp"
+                    android:background="#A0A0A0" />
 
                 <TextView
                     android:id="@+id/tvDetailContent"
@@ -87,17 +100,18 @@
                     android:layout_height="wrap_content"
                     android:textAppearance="?attr/textAppearanceBody1"
                     android:textColor="?android:attr/textColorPrimary"
-                    android:lineSpacingExtra="4dp"
-                    tools:text="Full content..." />
+                    android:lineSpacingExtra="6dp"
+                    android:alpha="0"
+                    tools:text="Content text..." />
 
                 <TextView
                     android:id="@+id/tvReadMoreLabel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="12dp"
                     android:text="Читать полностью: "
-                    android:textAppearance="?attr/textAppearanceBody1"
-                    android:textColor="?android:attr/textColorPrimary" />
+                    android:textStyle="bold"
+                    android:alpha="0" />
 
                 <TextView
                     android:id="@+id/tvDetailUrl"
@@ -106,17 +120,19 @@
                     android:layout_marginTop="4dp"
                     android:autoLink="web"
                     android:textColor="?attr/colorPrimary"
-                    tools:text="https://example.com/article" />
+                    android:alpha="0"
+                    tools:text="URL" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnDetailBlockAuthor"
                     style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="32dp"
+                    android:layout_marginTop="24dp"
                     android:text="Block Author"
                     app:strokeColor="#D32F2F"
-                    android:textColor="#D32F2F" />
+                    android:textColor="#D32F2F"
+                    android:alpha="0" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnDetailBlockSource"
@@ -124,11 +140,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
+                    android:layout_marginBottom="24dp"
                     android:text="Block Source"
                     app:strokeColor="#D32F2F"
-                    android:textColor="#D32F2F" />
+                    android:textColor="#D32F2F"
+                    android:alpha="0" />
 
             </LinearLayout>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.transition.TransitionInflater
 import coil.load
 import com.example.newsapp.data.repository.InMemoryUserRepository
 import com.example.newsapp.databinding.FragmentArticleDetailBinding
@@ -34,6 +35,12 @@ class ArticleDetailFragment : Fragment() {
         }
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        sharedElementEnterTransition = TransitionInflater.from(requireContext())
+            .inflateTransition(android.R.transition.move)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -46,6 +53,13 @@ class ArticleDetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val article = args.article
+        
+        // Настройка Transition Names
+        binding.ivDetailImage.transitionName = "image_${article.url}"
+        binding.tvDetailTitle.transitionName = "title_${article.url}"
+        binding.tvDetailSource.transitionName = "source_${article.url}"
+        binding.tvDetailDescription.transitionName = "desc_${article.url}"
+
         setupUI(article)
 
         binding.toolbarDetail.setNavigationOnClickListener {
@@ -67,13 +81,35 @@ class ArticleDetailFragment : Fragment() {
             }
             findNavController().popBackStack()
         }
+
+        // Анимация появления контента. Описание ТЕПЕРЬ ОСТАЕТСЯ.
+        animateContentTransition()
+    }
+
+    private fun animateContentTransition() {
+        val viewsToFadeIn = listOf(
+            binding.tvDetailContent,
+            binding.tvReadMoreLabel,
+            binding.tvDetailUrl,
+            binding.btnDetailBlockAuthor,
+            binding.btnDetailBlockSource,
+            binding.tvDetailAuthorAndDate
+        )
+
+        viewsToFadeIn.forEach { view ->
+            view.animate()
+                .alpha(1f)
+                .setDuration(600)
+                .setStartDelay(200)
+                .start()
+        }
     }
 
     private fun setupUI(article: Article) {
         binding.tvDetailTitle.text = article.title
         binding.tvDetailSource.text = article.source.name
+        binding.tvDetailDescription.text = article.description
         
-        // Remove [+2050 chars] pattern from content
         val cleanedContent = article.content.replace(Regex("\\[\\+\\d+\\schar[s]?\\]"), "").trim()
         binding.tvDetailContent.text = cleanedContent
 
@@ -94,12 +130,9 @@ class ArticleDetailFragment : Fragment() {
         binding.tvDetailAuthorAndDate.text = article.author?.let { "By $it • $dateStr" } ?: dateStr
 
         if (!article.urlToImage.isNullOrEmpty()) {
-            binding.ivDetailImage.visibility = View.VISIBLE
             binding.ivDetailImage.load(article.urlToImage) {
-                crossfade(true)
+                crossfade(false)
             }
-        } else {
-            binding.ivDetailImage.visibility = View.GONE
         }
     }
 

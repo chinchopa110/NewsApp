@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -19,6 +20,7 @@ import com.example.newsapp.R
 import com.example.newsapp.data.repository.NetworkArticleRepository
 import com.example.newsapp.data.repository.InMemoryUserRepository
 import com.example.newsapp.databinding.FragmentNewsBinding
+import com.example.newsapp.ui.components.ArticleCardView
 import kotlinx.coroutines.launch
 
 class NewsFragment : Fragment() {
@@ -49,6 +51,12 @@ class NewsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        postponeEnterTransition()
+        binding.recyclerViewNews.viewTreeObserver.addOnPreDrawListener {
+            startPostponedEnterTransition()
+            true
+        }
+
         updateThemeIcon()
 
         binding.btnToggleTheme.setOnClickListener {
@@ -66,17 +74,32 @@ class NewsFragment : Fragment() {
 
         val adapter = NewsAdapter(
             onArticleClick = { article ->
-                val action = NewsFragmentDirections.actionNewsFragmentToArticleDetailFragment(article)
-                findNavController().navigate(action)
+                val layoutManager = binding.recyclerViewNews.layoutManager as LinearLayoutManager
+                val position = (binding.recyclerViewNews.adapter as NewsAdapter).currentList.indexOf(article)
+                val viewHolder = binding.recyclerViewNews.findViewHolderForAdapterPosition(position)
+                
+                if (viewHolder != null) {
+                    val cardView = viewHolder.itemView.findViewById<ArticleCardView>(R.id.articleCard)
+                    val extras = FragmentNavigatorExtras(
+                        cardView.binding.ivArticleImage to "image_${article.url}",
+                        cardView.binding.tvTitle to "title_${article.url}",
+                        cardView.binding.tvSource to "source_${article.url}",
+                        cardView.binding.tvDescription to "desc_${article.url}"
+                    )
+                    
+                    val action = NewsFragmentDirections.actionNewsFragmentToArticleDetailFragment(article)
+                    findNavController().navigate(action, extras)
+                } else {
+                    val action = NewsFragmentDirections.actionNewsFragmentToArticleDetailFragment(article)
+                    findNavController().navigate(action)
+                }
             }
         )
         binding.recyclerViewNews.adapter = adapter
 
-        // Pagination Scroll Listener
         binding.recyclerViewNews.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
-                
                 val layoutManager = recyclerView.layoutManager as LinearLayoutManager
                 val visibleItemCount = layoutManager.childCount
                 val totalItemCount = layoutManager.itemCount

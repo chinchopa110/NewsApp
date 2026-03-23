@@ -18,7 +18,7 @@ class ArticleCardView @JvmOverloads constructor(
     defStyleAttr: Int = 0
 ) : MaterialCardView(context, attrs, defStyleAttr) {
 
-    private val binding: ViewArticleCardBinding = ViewArticleCardBinding.inflate(
+    val binding: ViewArticleCardBinding = ViewArticleCardBinding.inflate(
         LayoutInflater.from(context), this
     )
 
@@ -32,12 +32,18 @@ class ArticleCardView @JvmOverloads constructor(
         cardElevation = dpToPx(2f)
         setContentPadding(0, 0, 0, 0)
         
-        // Use the same styles as in original XML
         strokeWidth = dpToPx(1f).toInt()
         setStrokeColor(android.content.res.ColorStateList.valueOf(0x14000000))
     }
 
     fun setArticle(article: Article) {
+        // Устанавливаем уникальные имена для анимации перехода
+        binding.ivArticleImage.transitionName = "image_${article.url}"
+        binding.tvTitle.transitionName = "title_${article.url}"
+        binding.tvSource.transitionName = "source_${article.url}"
+        binding.tvDescription.transitionName = "desc_${article.url}"
+        this.transitionName = "card_${article.url}"
+
         binding.tvTitle.text = article.title
         binding.tvSource.text = article.source.name
         binding.tvDescription.text = article.description
@@ -54,7 +60,7 @@ class ArticleCardView @JvmOverloads constructor(
         if (!article.urlToImage.isNullOrEmpty()) {
             binding.ivArticleImage.visibility = View.VISIBLE
             binding.ivArticleImage.load(article.urlToImage) {
-                crossfade(true)
+                crossfade(false)
             }
         } else {
             binding.ivArticleImage.visibility = View.GONE
