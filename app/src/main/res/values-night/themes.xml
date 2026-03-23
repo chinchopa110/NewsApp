@@ -15,7 +15,5 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor">@color/black</item>
 
-        <!-- Don't override windowBackground and surface here to let DayNight handle it,
-             or set them to standard dark colors -->
     </style>
 </resources>

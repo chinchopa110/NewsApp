@@ -37,7 +37,6 @@ class ArticleCardView @JvmOverloads constructor(
     }
 
     fun setArticle(article: Article) {
-        // Устанавливаем уникальные имена для анимации перехода
         binding.ivArticleImage.transitionName = "image_${article.url}"
         binding.tvTitle.transitionName = "title_${article.url}"
         binding.tvSource.transitionName = "source_${article.url}"

@@ -4,7 +4,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <!-- Legacy Purple (kept for safety) -->
+    <!-- Legacy Purple -->
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>
@@ -15,9 +15,9 @@
     <color name="primary_purple_soft">#7C4DFF</color>
     <color name="primary_purple_dark">#6200EA</color>
 
-    <!-- Contrast Backgrounds for Light Theme -->
-    <color name="light_bg_main">#E0E0E0</color> <!-- Darker grey for window background -->
-    <color name="light_bg_article_card">#F5F5F5</color> <!-- Slightly lighter grey for surface/cards -->
+    <!-- Softer Contrast for Light Theme -->
+    <color name="light_bg_main">#DCDDE1</color>
+    <color name="light_bg_article_card">#ECEFF1</color>
 
     <!-- High Contrast Text -->
     <color name="text_primary_light">#000000</color>

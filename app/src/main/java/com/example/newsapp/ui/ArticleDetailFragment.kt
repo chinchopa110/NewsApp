@@ -54,7 +54,6 @@ class ArticleDetailFragment : Fragment() {
 
         val article = args.article
         
-        // Настройка Transition Names
         binding.ivDetailImage.transitionName = "image_${article.url}"
         binding.tvDetailTitle.transitionName = "title_${article.url}"
         binding.tvDetailSource.transitionName = "source_${article.url}"
@@ -82,7 +81,6 @@ class ArticleDetailFragment : Fragment() {
             findNavController().popBackStack()
         }
 
-        // Анимация появления контента. Описание ТЕПЕРЬ ОСТАЕТСЯ.
         animateContentTransition()
     }
 
