@@ -17,6 +17,8 @@ interface NewsApiService {
         @Query("q") query: String,
         @Query("from") from: String?,
         @Query("sortBy") sortBy: String?,
+        @Query("page") page: Int,
+        @Query("pageSize") pageSize: Int = 10,
         @Query("apiKey") apiKey: String
     ): Response<NewsResponse>
 
@@ -24,6 +26,8 @@ interface NewsApiService {
     suspend fun getTopHeadlines(
         @Query("country") country: String? = null,
         @Query("sources") sources: String? = null,
+        @Query("page") page: Int,
+        @Query("pageSize") pageSize: Int = 10,
         @Query("apiKey") apiKey: String
     ): Response<NewsResponse>
 }

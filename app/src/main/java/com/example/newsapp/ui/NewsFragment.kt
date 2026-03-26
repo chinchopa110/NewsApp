@@ -12,10 +12,15 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.FragmentNavigatorExtras
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.newsapp.R
 import com.example.newsapp.data.repository.NetworkArticleRepository
 import com.example.newsapp.data.repository.InMemoryUserRepository
 import com.example.newsapp.databinding.FragmentNewsBinding
+import com.example.newsapp.ui.components.ArticleCardView
 import kotlinx.coroutines.launch
 
 class NewsFragment : Fragment() {
@@ -35,15 +40,6 @@ class NewsFragment : Fragment() {
         }
     }
 
-    private val blacklistViewModel: BlacklistViewModel by viewModels {
-        object : ViewModelProvider.Factory {
-            @Suppress("UNCHECKED_CAST")
-            override fun <T : ViewModel> create(modelClass: Class<T>): T {
-                return BlacklistViewModel(InMemoryUserRepository.getInstance(requireContext())) as T
-            }
-        }
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -54,6 +50,12 @@ class NewsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        postponeEnterTransition()
+        binding.recyclerViewNews.viewTreeObserver.addOnPreDrawListener {
+            startPostponedEnterTransition()
+            true
+        }
 
         updateThemeIcon()
 
@@ -71,18 +73,43 @@ class NewsFragment : Fragment() {
         }
 
         val adapter = NewsAdapter(
-            onBlockAuthor = { author ->
-                blacklistViewModel.blockAuthor(author)
-            },
-            onBlockSource = { id, name ->
-                if (id != null) {
-                    blacklistViewModel.blockSourceId(id)
+            onArticleClick = { article ->
+                val layoutManager = binding.recyclerViewNews.layoutManager as LinearLayoutManager
+                val position = (binding.recyclerViewNews.adapter as NewsAdapter).currentList.indexOf(article)
+                val viewHolder = binding.recyclerViewNews.findViewHolderForAdapterPosition(position)
+                
+                if (viewHolder != null) {
+                    val cardView = viewHolder.itemView.findViewById<ArticleCardView>(R.id.articleCard)
+                    val extras = FragmentNavigatorExtras(
+                        cardView.binding.ivArticleImage to "image_${article.url}",
+                        cardView.binding.tvTitle to "title_${article.url}",
+                        cardView.binding.tvSource to "source_${article.url}",
+                        cardView.binding.tvDescription to "desc_${article.url}"
+                    )
+                    
+                    val action = NewsFragmentDirections.actionNewsFragmentToArticleDetailFragment(article)
+                    findNavController().navigate(action, extras)
                 } else {
-                    blacklistViewModel.blockSourceName(name)
+                    val action = NewsFragmentDirections.actionNewsFragmentToArticleDetailFragment(article)
+                    findNavController().navigate(action)
                 }
             }
         )
         binding.recyclerViewNews.adapter = adapter
+
+        binding.recyclerViewNews.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+                val layoutManager = recyclerView.layoutManager as LinearLayoutManager
+                val visibleItemCount = layoutManager.childCount
+                val totalItemCount = layoutManager.itemCount
+                val firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition()
+
+                if ((visibleItemCount + firstVisibleItemPosition) >= totalItemCount && firstVisibleItemPosition >= 0) {
+                    viewModel.loadNextPage()
+                }
+            }
+        })
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {

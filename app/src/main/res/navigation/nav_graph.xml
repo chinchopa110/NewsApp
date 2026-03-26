@@ -9,7 +9,21 @@
         android:id="@+id/newsFragment"
         android:name="com.example.newsapp.ui.NewsFragment"
         android:label="News"
-        tools:layout="@layout/fragment_news" />
+        tools:layout="@layout/fragment_news">
+        <action
+            android:id="@+id/action_newsFragment_to_articleDetailFragment"
+            app:destination="@id/articleDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/articleDetailFragment"
+        android:name="com.example.newsapp.ui.ArticleDetailFragment"
+        android:label="Article Detail"
+        tools:layout="@layout/fragment_article_detail">
+        <argument
+            android:name="article"
+            app:argType="com.example.newsapp.domain.model.Article" />
+    </fragment>
 
     <fragment
         android:id="@+id/blacklistFragment"
