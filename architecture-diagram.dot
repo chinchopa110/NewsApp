@@ -1,0 +1,59 @@
+// NewsApp Architecture
+digraph {
+	nodesep=0.8 rankdir=TB ranksep=1.5 splines=polyline
+	node [fontname=Arial fontsize=10 shape=box style="rounded,filled"]
+	subgraph cluster_ui {
+		color=lightblue fontname="Arial Bold" fontsize=12 label="UI Layer (Presentation)" style=filled
+		MA [label=MainActivity color="#01579b" fillcolor="#e1f5ff" penwidth=2]
+		NF [label=NewsFragment color="#01579b" fillcolor="#e1f5ff" penwidth=2]
+		BF [label=BlacklistFragment color="#01579b" fillcolor="#e1f5ff" penwidth=2]
+		ADF [label=ArticleDetailFragment color="#01579b" fillcolor="#e1f5ff" penwidth=2]
+		NVM [label=NewsViewModel color="#01579b" fillcolor="#e1f5ff" penwidth=2]
+		BVM [label=BlacklistViewModel color="#01579b" fillcolor="#e1f5ff" penwidth=2]
+		NA [label=NewsAdapter color="#01579b" fillcolor="#e1f5ff" penwidth=2]
+		BA [label=BlacklistAdapter color="#01579b" fillcolor="#e1f5ff" penwidth=2]
+		ACV [label=ArticleCardView color="#01579b" fillcolor="#e1f5ff" penwidth=2]
+	}
+	subgraph cluster_domain {
+		color="#f3e5f5" fontname="Arial Bold" fontsize=12 label="Domain Layer (Business Logic)" style=filled
+		AR [label="ArticleRepository
+(Interface)" color="#4a148c" fillcolor="#f3e5f5" penwidth=2]
+		UR [label="UserRepository
+(Interface)" color="#4a148c" fillcolor="#f3e5f5" penwidth=2]
+		AM [label="Article Model" color="#4a148c" fillcolor="#f3e5f5" penwidth=2]
+		UM [label="User Model" color="#4a148c" fillcolor="#f3e5f5" penwidth=2]
+		RM [label="Result Model" color="#4a148c" fillcolor="#f3e5f5" penwidth=2]
+	}
+	subgraph cluster_data {
+		color="#e8f5e9" fontname="Arial Bold" fontsize=12 label="Data Layer" style=filled
+		NAR [label=NetworkArticleRepository color="#1b5e20" fillcolor="#e8f5e9" penwidth=2]
+		IUR [label=InMemoryUserRepository color="#1b5e20" fillcolor="#e8f5e9" penwidth=2]
+		RC [label=RetrofitClient color="#1b5e20" fillcolor="#e8f5e9" penwidth=2]
+		NAS [label=NewsApiService color="#1b5e20" fillcolor="#e8f5e9" penwidth=2]
+	}
+	subgraph cluster_external {
+		color="#fff3e0" fontname="Arial Bold" fontsize=12 label="External Services" style=filled
+		API [label="News API
+(newsapi.org)" color="#e65100" fillcolor="#fff3e0" penwidth=2]
+	}
+	MA -> NF
+	MA -> BF
+	MA -> ADF
+	NF -> NVM
+	NF -> NA
+	BF -> BVM
+	BF -> BA
+	NA -> ACV
+	NVM -> AR
+	NVM -> UR
+	BVM -> UR
+	AR -> NAR [label=implements style=dashed]
+	UR -> IUR [label=implements style=dashed]
+	AR -> AM
+	AR -> RM
+	UR -> UM
+	NAR -> RC
+	RC -> NAS
+	NAS -> API
+	IUR -> UM
+}
