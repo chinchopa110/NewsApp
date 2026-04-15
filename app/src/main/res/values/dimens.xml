@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="ds_space_0">0dp</dimen>
+    <dimen name="ds_space_1">2dp</dimen>
+    <dimen name="ds_space_2">4dp</dimen>
+    <dimen name="ds_space_3">6dp</dimen>
+    <dimen name="ds_space_4">8dp</dimen>
+    <dimen name="ds_space_5">12dp</dimen>
+    <dimen name="ds_space_6">16dp</dimen>
+    <dimen name="ds_space_7">20dp</dimen>
+    <dimen name="ds_space_8">24dp</dimen>
+    <dimen name="ds_space_9">32dp</dimen>
+    <dimen name="ds_space_10">40dp</dimen>
+    <dimen name="ds_space_11">48dp</dimen>
+    <dimen name="ds_space_12">56dp</dimen>
+    <dimen name="ds_space_13">64dp</dimen>
+
+    <dimen name="ds_screen_padding_horizontal">16dp</dimen>
+    <dimen name="ds_screen_padding_vertical">16dp</dimen>
+
+    <dimen name="ds_card_padding">16dp</dimen>
+    <dimen name="ds_card_padding_small">12dp</dimen>
+
+    <dimen name="ds_list_item_margin_horizontal">12dp</dimen>
+    <dimen name="ds_list_item_margin_vertical">6dp</dimen>
+
+    <dimen name="ds_section_spacing">24dp</dimen>
+
+    <dimen name="ds_radius_none">0dp</dimen>
+    <dimen name="ds_radius_xs">4dp</dimen>
+    <dimen name="ds_radius_sm">8dp</dimen>
+    <dimen name="ds_radius_md">12dp</dimen>
+    <dimen name="ds_radius_lg">16dp</dimen>
+    <dimen name="ds_radius_xl">24dp</dimen>
+    <dimen name="ds_radius_full">100dp</dimen>
+
+    <dimen name="ds_radius_card">16dp</dimen>
+    <dimen name="ds_radius_button">8dp</dimen>
+    <dimen name="ds_radius_chip">100dp</dimen>
+    <dimen name="ds_radius_image_top">16dp</dimen>
+
+    <dimen name="ds_elevation_none">0dp</dimen>
+    <dimen name="ds_elevation_xs">1dp</dimen>
+    <dimen name="ds_elevation_sm">2dp</dimen>
+    <dimen name="ds_elevation_md">4dp</dimen>
+    <dimen name="ds_elevation_lg">8dp</dimen>
+    <dimen name="ds_elevation_xl">16dp</dimen>
+
+    <dimen name="ds_elevation_card">2dp</dimen>
+    <dimen name="ds_elevation_appbar">4dp</dimen>
+    <dimen name="ds_elevation_bottom_nav">8dp</dimen>
+    <dimen name="ds_elevation_dialog">16dp</dimen>
+
+    <dimen name="ds_stroke_thin">1dp</dimen>
+    <dimen name="ds_stroke_medium">2dp</dimen>
+    <dimen name="ds_stroke_thick">3dp</dimen>
+
+    <dimen name="ds_icon_xs">16dp</dimen>
+    <dimen name="ds_icon_sm">20dp</dimen>
+    <dimen name="ds_icon_md">24dp</dimen>
+    <dimen name="ds_icon_lg">32dp</dimen>
+    <dimen name="ds_icon_xl">48dp</dimen>
+
+    <dimen name="ds_image_card_height">200dp</dimen>
+    <dimen name="ds_image_detail_height">260dp</dimen>
+
+    <dimen name="ds_toolbar_height">56dp</dimen>
+    <dimen name="ds_bottom_nav_height">56dp</dimen>
+    <dimen name="ds_button_height">48dp</dimen>
+    <dimen name="ds_button_min_width">88dp</dimen>
+
+    <dimen name="ds_divider_height">1dp</dimen>
+
+    <dimen name="ds_text_xs">10sp</dimen>
+    <dimen name="ds_text_sm">12sp</dimen>
+    <dimen name="ds_text_md">14sp</dimen>
+    <dimen name="ds_text_lg">16sp</dimen>
+    <dimen name="ds_text_xl">18sp</dimen>
+    <dimen name="ds_text_2xl">20sp</dimen>
+    <dimen name="ds_text_3xl">24sp</dimen>
+    <dimen name="ds_text_4xl">28sp</dimen>
+    <dimen name="ds_text_5xl">34sp</dimen>
+
+    <dimen name="ds_line_spacing_body">4dp</dimen>
+    <dimen name="ds_line_spacing_heading">2dp</dimen>
+
+</resources>

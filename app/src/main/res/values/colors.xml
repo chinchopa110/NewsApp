@@ -1,25 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Base Colors -->
+
+    <color name="ds_neutral_0">#FFFFFF</color>
+    <color name="ds_neutral_50">#F8F9FA</color>
+    <color name="ds_neutral_100">#F1F3F5</color>
+    <color name="ds_neutral_200">#E9ECEF</color>
+    <color name="ds_neutral_300">#DEE2E6</color>
+    <color name="ds_neutral_400">#CED4DA</color>
+    <color name="ds_neutral_500">#ADB5BD</color>
+    <color name="ds_neutral_600">#6C757D</color>
+    <color name="ds_neutral_700">#495057</color>
+    <color name="ds_neutral_800">#343A40</color>
+    <color name="ds_neutral_900">#212529</color>
+    <color name="ds_neutral_1000">#000000</color>
+
+    <color name="ds_violet_50">#F3EEFF</color>
+    <color name="ds_violet_100">#E4D5FF</color>
+    <color name="ds_violet_200">#C9ABFF</color>
+    <color name="ds_violet_300">#AE81FF</color>
+    <color name="ds_violet_400">#9357FF</color>
+    <color name="ds_violet_500">#7C4DFF</color>
+    <color name="ds_violet_600">#6200EA</color>
+    <color name="ds_violet_700">#4A00C8</color>
+    <color name="ds_violet_800">#3300A0</color>
+    <color name="ds_violet_900">#1C0078</color>
+
+    <color name="ds_teal_50">#E0F7FA</color>
+    <color name="ds_teal_100">#B2EBF2</color>
+    <color name="ds_teal_200">#80DEEA</color>
+    <color name="ds_teal_300">#4DD0E1</color>
+    <color name="ds_teal_400">#26C6DA</color>
+    <color name="ds_teal_500">#03DAC5</color>
+    <color name="ds_teal_600">#018786</color>
+    <color name="ds_teal_700">#006064</color>
+
+    <color name="ds_red_50">#FFEBEE</color>
+    <color name="ds_red_100">#FFCDD2</color>
+    <color name="ds_red_300">#E57373</color>
+    <color name="ds_red_500">#F44336</color>
+    <color name="ds_red_700">#D32F2F</color>
+    <color name="ds_red_900">#B71C1C</color>
+
+    <color name="ds_green_50">#E8F5E9</color>
+    <color name="ds_green_500">#4CAF50</color>
+    <color name="ds_green_700">#388E3C</color>
+
+    <color name="ds_amber_50">#FFF8E1</color>
+    <color name="ds_amber_500">#FFC107</color>
+    <color name="ds_amber_700">#FFA000</color>
+
+    <color name="ds_color_primary">#7C4DFF</color>
+    <color name="ds_color_primary_variant">#6200EA</color>
+    <color name="ds_color_on_primary">#FFFFFF</color>
+
+    <color name="ds_color_secondary">#03DAC5</color>
+    <color name="ds_color_secondary_variant">#018786</color>
+    <color name="ds_color_on_secondary">#000000</color>
+
+    <color name="ds_color_background">#F1F3F5</color>
+    <color name="ds_color_on_background">#212529</color>
+
+    <color name="ds_color_surface">#FFFFFF</color>
+    <color name="ds_color_surface_variant">#F8F9FA</color>
+    <color name="ds_color_on_surface">#212529</color>
+    <color name="ds_color_on_surface_medium">#495057</color>
+    <color name="ds_color_on_surface_disabled">#ADB5BD</color>
+
+    <color name="ds_color_outline">#DEE2E6</color>
+    <color name="ds_color_outline_variant">#E9ECEF</color>
+
+    <color name="ds_color_status_bar">#6200EA</color>
+
+    <color name="ds_color_error">#D32F2F</color>
+    <color name="ds_color_error_container">#FFEBEE</color>
+    <color name="ds_color_on_error">#FFFFFF</color>
+
+    <color name="ds_dark_color_primary">#AE81FF</color>
+    <color name="ds_dark_color_primary_variant">#7C4DFF</color>
+    <color name="ds_dark_color_on_primary">#000000</color>
+
+    <color name="ds_dark_color_secondary">#03DAC5</color>
+    <color name="ds_dark_color_secondary_variant">#03DAC5</color>
+    <color name="ds_dark_color_on_secondary">#000000</color>
+
+    <color name="ds_dark_color_background">#121212</color>
+    <color name="ds_dark_color_on_background">#E9ECEF</color>
+
+    <color name="ds_dark_color_surface">#1E1E1E</color>
+    <color name="ds_dark_color_surface_variant">#2C2C2C</color>
+    <color name="ds_dark_color_on_surface">#E9ECEF</color>
+    <color name="ds_dark_color_on_surface_medium">#ADB5BD</color>
+    <color name="ds_dark_color_on_surface_disabled">#6C757D</color>
+
+    <color name="ds_dark_color_outline">#495057</color>
+    <color name="ds_dark_color_outline_variant">#343A40</color>
+
+    <color name="ds_dark_color_status_bar">#000000</color>
+
+    <color name="ds_dark_color_error">#EF9A9A</color>
+    <color name="ds_dark_color_error_container">#4E1010</color>
+    <color name="ds_dark_color_on_error">#000000</color>
+
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-
-    <!-- Legacy Purple -->
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
-
-    <!-- Softer Purple for Light Theme -->
     <color name="primary_purple_soft">#7C4DFF</color>
     <color name="primary_purple_dark">#6200EA</color>
+    <color name="light_bg_main">#F1F3F5</color>
+    <color name="light_bg_article_card">#FFFFFF</color>
+    <color name="text_primary_light">#212529</color>
+    <color name="text_grey_strong">#495057</color>
 
-    <!-- Softer Contrast for Light Theme -->
-    <color name="light_bg_main">#DCDDE1</color>
-    <color name="light_bg_article_card">#ECEFF1</color>
-
-    <!-- High Contrast Text -->
-    <color name="text_primary_light">#000000</color>
-    <color name="text_grey_strong">#212121</color>
 </resources>

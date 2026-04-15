@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,73 +8,74 @@
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarBlacklist"
+        style="@style/DS.Widget.AppBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbarBlacklist"
+            style="@style/DS.Widget.Toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            app:title="Blacklist management" />
+            app:title="@string/title_blacklist" />
+
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/appBarBlacklist">
+        app:layout_constraintTop_toBottomOf="@id/appBarBlacklist"
+        app:layout_constraintBottom_toBottomOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="16dp">
+            android:paddingStart="@dimen/ds_screen_padding_horizontal"
+            android:paddingEnd="@dimen/ds_screen_padding_horizontal"
+            android:paddingTop="@dimen/ds_screen_padding_vertical"
+            android:paddingBottom="@dimen/ds_screen_padding_vertical">
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Blocked Authors"
-                android:textAppearance="?attr/textAppearanceHeadline6" />
+                style="@style/DS.Widget.SectionHeader"
+                android:text="@string/section_blocked_authors" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvBlockedAuthors"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="@dimen/ds_space_4"
                 android:nestedScrollingEnabled="false"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:text="Blocked Source IDs"
-                android:textAppearance="?attr/textAppearanceHeadline6" />
+                style="@style/DS.Widget.SectionHeader"
+                android:layout_marginTop="@dimen/ds_section_spacing"
+                android:text="@string/section_blocked_source_ids" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvBlockedSourceIds"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="@dimen/ds_space_4"
                 android:nestedScrollingEnabled="false"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:text="Blocked Source Names"
-                android:textAppearance="?attr/textAppearanceHeadline6" />
+                style="@style/DS.Widget.SectionHeader"
+                android:layout_marginTop="@dimen/ds_section_spacing"
+                android:text="@string/section_blocked_source_names" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvBlockedSourceNames"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="@dimen/ds_space_4"
                 android:nestedScrollingEnabled="false"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

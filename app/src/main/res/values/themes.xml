@@ -1,30 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Base application theme. -->
+
     <style name="Theme.NewsApp" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <!-- Primary brand color - Softer Purple -->
-        <item name="colorPrimary">@color/primary_purple_soft</item>
-        <item name="colorPrimaryVariant">@color/primary_purple_dark</item>
-        <item name="colorOnPrimary">@color/white</item>
-
-        <!-- Secondary brand color -->
-        <item name="colorSecondary">@color/teal_200</item>
-        <item name="colorSecondaryVariant">@color/teal_700</item>
-        <item name="colorOnSecondary">@color/black</item>
-
-        <!-- Background and Surface - Adjusted for better contrast in light theme -->
-        <item name="android:windowBackground">@color/light_bg_main</item>
-        <item name="colorSurface">@color/light_bg_article_card</item>
-        <item name="colorOnSurface">@color/text_primary_light</item>
-
-        <!-- Status bar color -->
-        <item name="android:statusBarColor">@color/primary_purple_dark</item>
-
-        <!-- Global Text Colors -->
-        <item name="android:textColorPrimary">@color/text_primary_light</item>
-        <item name="android:textColorSecondary">@color/text_grey_strong</item>
-
-        <!-- Action Bar theme -->
+        <item name="colorPrimary">@color/ds_color_primary</item>
+        <item name="colorPrimaryVariant">@color/ds_color_primary_variant</item>
+        <item name="colorOnPrimary">@color/ds_color_on_primary</item>
+        <item name="colorSecondary">@color/ds_color_secondary</item>
+        <item name="colorSecondaryVariant">@color/ds_color_secondary_variant</item>
+        <item name="colorOnSecondary">@color/ds_color_on_secondary</item>
+        <item name="android:windowBackground">@color/ds_color_background</item>
+        <item name="android:colorBackground">@color/ds_color_background</item>
+        <item name="colorSurface">@color/ds_color_surface</item>
+        <item name="colorOnSurface">@color/ds_color_on_surface</item>
+        <item name="android:textColorPrimary">@color/ds_color_on_background</item>
+        <item name="android:textColorSecondary">@color/ds_color_on_surface_medium</item>
+        <item name="android:textColorHint">@color/ds_color_on_surface_disabled</item>
+        <item name="colorError">@color/ds_color_error</item>
+        <item name="android:statusBarColor">@color/ds_color_status_bar</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="shapeAppearanceSmallComponent">@style/DS.ShapeAppearance.Small</item>
+        <item name="shapeAppearanceMediumComponent">@style/DS.ShapeAppearance.Medium</item>
+        <item name="shapeAppearanceLargeComponent">@style/DS.ShapeAppearance.Large</item>
+        <item name="materialCardViewStyle">@style/DS.Widget.Card</item>
+        <item name="toolbarStyle">@style/DS.Widget.Toolbar</item>
+        <item name="bottomNavigationStyle">@style/DS.Widget.BottomNavigation</item>
+        <item name="materialButtonStyle">@style/DS.Widget.Button.Primary</item>
         <item name="actionBarTheme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
     </style>
+
+    <style name="DS.ShapeAppearance" parent="" />
+
+    <style name="DS.ShapeAppearance.Small" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">@dimen/ds_radius_xs</item>
+    </style>
+
+    <style name="DS.ShapeAppearance.Medium" parent="ShapeAppearance.MaterialComponents.MediumComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">@dimen/ds_radius_md</item>
+    </style>
+
+    <style name="DS.ShapeAppearance.Large" parent="ShapeAppearance.MaterialComponents.LargeComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">@dimen/ds_radius_lg</item>
+    </style>
+
 </resources>

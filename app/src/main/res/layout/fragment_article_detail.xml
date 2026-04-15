@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/articleDetailRoot"
@@ -9,17 +10,18 @@
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarDetail"
+        style="@style/DS.Widget.AppBarLayout.Transparent"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?android:attr/windowBackground"
-        app:elevation="0dp">
+        android:layout_height="wrap_content">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbarDetail"
+            style="@style/DS.Widget.Toolbar.Transparent"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:navigationIcon="?attr/homeAsUpIndicator"
             app:title="" />
+
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.core.widget.NestedScrollView
@@ -36,117 +38,117 @@
             <ImageView
                 android:id="@+id/ivDetailImage"
                 android:layout_width="match_parent"
-                android:layout_height="250dp"
+                android:layout_height="@dimen/ds_image_detail_height"
                 android:scaleType="centerCrop"
+                android:background="@color/ds_neutral_200"
+                android:contentDescription="@string/cd_article_image"
                 tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="20dp">
+                android:paddingStart="@dimen/ds_screen_padding_horizontal"
+                android:paddingEnd="@dimen/ds_screen_padding_horizontal"
+                android:paddingTop="@dimen/ds_space_7"
+                android:paddingBottom="@dimen/ds_space_9">
 
                 <TextView
                     android:id="@+id/tvDetailSource"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textAppearance="?attr/textAppearanceCaption"
+                    android:textAppearance="@style/DS.TextAppearance.SourceLabel"
                     android:textColor="?attr/colorPrimary"
-                    android:textStyle="bold"
-                    android:textAllCaps="true"
-                    android:letterSpacing="0.05"
-                    tools:text="SOURCE" />
+                    tools:text="THE GUARDIAN" />
 
                 <TextView
                     android:id="@+id/tvDetailTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:textAppearance="?attr/textAppearanceHeadline5"
+                    android:layout_marginTop="@dimen/ds_space_3"
+                    android:textAppearance="@style/DS.TextAppearance.HeadlineMedium"
                     android:textColor="?android:attr/textColorPrimary"
                     android:textStyle="bold"
-                    tools:text="Article Title" />
+                    tools:text="Article Title Goes Here" />
 
                 <TextView
                     android:id="@+id/tvDetailAuthorAndDate"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
-                    android:textAppearance="?attr/textAppearanceCaption"
+                    android:layout_marginTop="@dimen/ds_space_2"
+                    android:textAppearance="@style/DS.TextAppearance.Caption"
                     android:textColor="?android:attr/textColorSecondary"
-                    tools:text="Author • Date" />
+                    tools:text="By Jane Doe · 15 Apr 2025" />
 
                 <TextView
                     android:id="@+id/tvDetailDescription"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:textAppearance="?attr/textAppearanceBody2"
+                    android:layout_marginTop="@dimen/ds_space_5"
+                    android:textAppearance="@style/DS.TextAppearance.BodyMedium"
                     android:textColor="?android:attr/textColorSecondary"
-                    android:alpha="1"
-                    tools:text="Description..." />
+                    tools:text="A brief description of the article..." />
 
-                <!-- Исправленный разделитель: более контрастный цвет и меньше отступы -->
                 <View
                     android:id="@+id/divider"
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginVertical="8dp"
-                    android:background="#A0A0A0" />
+                    android:layout_height="@dimen/ds_divider_height"
+                    android:layout_marginTop="@dimen/ds_space_6"
+                    android:layout_marginBottom="@dimen/ds_space_6"
+                    android:background="@color/ds_color_outline" />
 
                 <TextView
                     android:id="@+id/tvDetailContent"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textAppearance="?attr/textAppearanceBody1"
+                    android:textAppearance="@style/DS.TextAppearance.BodyLarge"
                     android:textColor="?android:attr/textColorPrimary"
-                    android:lineSpacingExtra="6dp"
+                    android:lineSpacingExtra="@dimen/ds_line_spacing_body"
                     android:alpha="0"
-                    tools:text="Content text..." />
+                    tools:text="Full article content goes here..." />
 
                 <TextView
                     android:id="@+id/tvReadMoreLabel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:text="Читать полностью: "
-                    android:textStyle="bold"
+                    android:layout_marginTop="@dimen/ds_space_6"
+                    android:text="@string/label_read_more"
+                    android:textAppearance="@style/DS.TextAppearance.LabelLarge"
+                    android:textColor="?android:attr/textColorPrimary"
                     android:alpha="0" />
 
                 <TextView
                     android:id="@+id/tvDetailUrl"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
+                    android:layout_marginTop="@dimen/ds_space_2"
                     android:autoLink="web"
+                    android:textAppearance="@style/DS.TextAppearance.BodyMedium"
                     android:textColor="?attr/colorPrimary"
                     android:alpha="0"
-                    tools:text="URL" />
+                    tools:text="https://example.com/article" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnDetailBlockAuthor"
-                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    style="@style/DS.Widget.Button.Danger"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="24dp"
-                    android:text="Block Author"
-                    app:strokeColor="#D32F2F"
-                    android:textColor="#D32F2F"
+                    android:layout_marginTop="@dimen/ds_section_spacing"
+                    android:text="@string/btn_block_author"
                     android:alpha="0" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnDetailBlockSource"
-                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    style="@style/DS.Widget.Button.Danger"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="24dp"
-                    android:text="Block Source"
-                    app:strokeColor="#D32F2F"
-                    android:textColor="#D32F2F"
+                    android:layout_marginTop="@dimen/ds_space_4"
+                    android:layout_marginBottom="@dimen/ds_space_9"
+                    android:text="@string/btn_block_source"
                     android:alpha="0" />
 
             </LinearLayout>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

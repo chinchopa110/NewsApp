@@ -1,3 +1,23 @@
 <resources>
     <string name="app_name">NewsApp</string>
+
+    <!-- Content descriptions -->
+    <string name="cd_unblock">Unblock</string>
+    <string name="cd_toggle_theme">Toggle theme</string>
+    <string name="cd_article_image">Article image</string>
+    <string name="cd_back">Back</string>
+
+    <!-- Toolbar titles -->
+    <string name="title_news">Daily News</string>
+    <string name="title_blacklist">Blacklist management</string>
+
+    <!-- Blacklist section headers -->
+    <string name="section_blocked_authors">Blocked Authors</string>
+    <string name="section_blocked_source_ids">Blocked Source IDs</string>
+    <string name="section_blocked_source_names">Blocked Source Names</string>
+
+    <!-- Article detail -->
+    <string name="label_read_more">Read full article:</string>
+    <string name="btn_block_author">Block Author</string>
+    <string name="btn_block_source">Block Source</string>
 </resources>

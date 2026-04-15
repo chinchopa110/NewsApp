@@ -3,22 +3,29 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:padding="8dp"
-    android:gravity="center_vertical">
+    android:paddingStart="@dimen/ds_space_6"
+    android:paddingEnd="@dimen/ds_space_4"
+    android:paddingTop="@dimen/ds_space_4"
+    android:paddingBottom="@dimen/ds_space_4"
+    android:gravity="center_vertical"
+    android:background="?attr/selectableItemBackground">
 
     <TextView
         android:id="@+id/tvValue"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:textAppearance="?attr/textAppearanceBody1" />
+        android:textAppearance="@style/DS.TextAppearance.BodyMedium"
+        android:textColor="?android:attr/textColorPrimary" />
 
     <ImageButton
         android:id="@+id/btnUnblock"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/ds_icon_xl"
+        android:layout_height="@dimen/ds_icon_xl"
+        android:padding="@dimen/ds_space_5"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:src="@android:drawable/ic_menu_delete"
-        android:contentDescription="Unblock" />
+        android:tint="?attr/colorError"
+        android:contentDescription="@string/cd_unblock" />
 
 </LinearLayout>

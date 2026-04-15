@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="DS.Widget" parent="" />
+    <style name="DS.Widget.Button" parent="" />
+
+    <style name="DS.Widget.Card" parent="Widget.MaterialComponents.CardView">
+        <item name="cardCornerRadius">@dimen/ds_radius_card</item>
+        <item name="cardElevation">@dimen/ds_elevation_card</item>
+        <item name="cardBackgroundColor">?attr/colorSurface</item>
+        <item name="strokeWidth">@dimen/ds_stroke_thin</item>
+        <item name="strokeColor">@color/ds_color_outline</item>
+        <item name="contentPaddingLeft">0dp</item>
+        <item name="contentPaddingTop">0dp</item>
+        <item name="contentPaddingRight">0dp</item>
+        <item name="contentPaddingBottom">0dp</item>
+    </style>
+
+    <style name="DS.Widget.Toolbar" parent="Widget.AppCompat.Toolbar">
+        <item name="android:background">?attr/colorPrimary</item>
+        <item name="android:elevation">@dimen/ds_elevation_appbar</item>
+        <item name="titleTextColor">?attr/colorOnPrimary</item>
+        <item name="subtitleTextColor">?attr/colorOnPrimary</item>
+    </style>
+
+    <style name="DS.Widget.Toolbar.Transparent" parent="DS.Widget.Toolbar">
+        <item name="android:background">?android:attr/windowBackground</item>
+        <item name="android:elevation">@dimen/ds_elevation_none</item>
+        <item name="titleTextColor">?android:attr/textColorPrimary</item>
+    </style>
+
+    <style name="DS.Widget.AppBarLayout" parent="Widget.MaterialComponents.AppBarLayout.Primary">
+        <item name="android:background">?attr/colorPrimary</item>
+        <item name="elevation">@dimen/ds_elevation_appbar</item>
+    </style>
+
+    <style name="DS.Widget.AppBarLayout.Transparent" parent="DS.Widget.AppBarLayout">
+        <item name="android:background">?android:attr/windowBackground</item>
+        <item name="elevation">@dimen/ds_elevation_none</item>
+    </style>
+
+    <style name="DS.Widget.BottomNavigation" parent="Widget.MaterialComponents.BottomNavigationView">
+        <item name="android:background">?attr/colorSurface</item>
+        <item name="elevation">@dimen/ds_elevation_bottom_nav</item>
+        <item name="itemIconTint">@color/ds_bottom_nav_icon_tint</item>
+        <item name="itemTextColor">@color/ds_bottom_nav_icon_tint</item>
+    </style>
+
+    <style name="DS.Widget.Button.Primary" parent="Widget.MaterialComponents.Button">
+        <item name="android:minHeight">@dimen/ds_button_height</item>
+        <item name="cornerRadius">@dimen/ds_radius_button</item>
+        <item name="backgroundTint">?attr/colorPrimary</item>
+        <item name="android:textColor">?attr/colorOnPrimary</item>
+        <item name="android:textAppearance">@style/DS.TextAppearance.LabelLarge</item>
+        <item name="android:paddingStart">@dimen/ds_space_8</item>
+        <item name="android:paddingEnd">@dimen/ds_space_8</item>
+    </style>
+
+    <style name="DS.Widget.Button.Danger" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="android:minHeight">@dimen/ds_button_height</item>
+        <item name="cornerRadius">@dimen/ds_radius_button</item>
+        <item name="strokeColor">?attr/colorError</item>
+        <item name="android:textColor">?attr/colorError</item>
+        <item name="android:textAppearance">@style/DS.TextAppearance.LabelLarge</item>
+        <item name="android:paddingStart">@dimen/ds_space_8</item>
+        <item name="android:paddingEnd">@dimen/ds_space_8</item>
+    </style>
+
+    <style name="DS.Widget.Button.Text" parent="Widget.MaterialComponents.Button.TextButton">
+        <item name="android:minHeight">@dimen/ds_button_height</item>
+        <item name="cornerRadius">@dimen/ds_radius_button</item>
+        <item name="android:textColor">?attr/colorPrimary</item>
+        <item name="android:textAppearance">@style/DS.TextAppearance.LabelLarge</item>
+    </style>
+
+    <style name="DS.Widget.IconButton" parent="">
+        <item name="android:background">?attr/selectableItemBackgroundBorderless</item>
+        <item name="android:layout_width">@dimen/ds_icon_xl</item>
+        <item name="android:layout_height">@dimen/ds_icon_xl</item>
+        <item name="android:padding">@dimen/ds_space_5</item>
+    </style>
+
+    <style name="DS.Widget.Divider">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/ds_divider_height</item>
+        <item name="android:background">?attr/colorControlHighlight</item>
+        <item name="android:layout_marginVertical">@dimen/ds_space_4</item>
+    </style>
+
+    <style name="DS.Widget.SectionHeader">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textAppearance">@style/DS.TextAppearance.TitleMedium</item>
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
+        <item name="android:paddingVertical">@dimen/ds_space_4</item>
+    </style>
+
+    <style name="DS.Widget.ProgressBar" parent="Widget.AppCompat.ProgressBar">
+        <item name="android:indeterminateTint">?attr/colorPrimary</item>
+    </style>
+
+    <style name="DS.Widget.SwipeRefresh" />
+
+</resources>

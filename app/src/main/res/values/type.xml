@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="DS" parent="" />
+    <style name="DS.TextAppearance" parent="DS" />
+
+    <style name="DS.TextAppearance.DisplayLarge">
+        <item name="android:textSize">@dimen/ds_text_5xl</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:letterSpacing">-0.016</item>
+        <item name="android:lineSpacingExtra">@dimen/ds_line_spacing_heading</item>
+    </style>
+
+    <style name="DS.TextAppearance.DisplayMedium">
+        <item name="android:textSize">28sp</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:letterSpacing">0</item>
+        <item name="android:lineSpacingExtra">@dimen/ds_line_spacing_heading</item>
+    </style>
+
+    <style name="DS.TextAppearance.HeadlineLarge">
+        <item name="android:textSize">@dimen/ds_text_4xl</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:letterSpacing">0</item>
+        <item name="android:lineSpacingExtra">@dimen/ds_line_spacing_heading</item>
+    </style>
+
+    <style name="DS.TextAppearance.HeadlineMedium">
+        <item name="android:textSize">@dimen/ds_text_3xl</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:letterSpacing">0</item>
+        <item name="android:lineSpacingExtra">@dimen/ds_line_spacing_heading</item>
+    </style>
+
+    <style name="DS.TextAppearance.HeadlineSmall">
+        <item name="android:textSize">@dimen/ds_text_2xl</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:letterSpacing">0</item>
+        <item name="android:lineSpacingExtra">@dimen/ds_line_spacing_heading</item>
+    </style>
+
+    <style name="DS.TextAppearance.TitleLarge">
+        <item name="android:textSize">@dimen/ds_text_xl</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:letterSpacing">0</item>
+        <item name="android:lineSpacingExtra">@dimen/ds_line_spacing_heading</item>
+    </style>
+
+    <style name="DS.TextAppearance.TitleMedium">
+        <item name="android:textSize">@dimen/ds_text_lg</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:letterSpacing">0.009</item>
+        <item name="android:lineSpacingExtra">@dimen/ds_line_spacing_heading</item>
+    </style>
+
+    <style name="DS.TextAppearance.TitleSmall">
+        <item name="android:textSize">@dimen/ds_text_md</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:letterSpacing">0.007</item>
+        <item name="android:lineSpacingExtra">@dimen/ds_line_spacing_heading</item>
+    </style>
+
+    <style name="DS.TextAppearance.LabelLarge">
+        <item name="android:textSize">@dimen/ds_text_md</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:letterSpacing">0.007</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <style name="DS.TextAppearance.LabelMedium">
+        <item name="android:textSize">@dimen/ds_text_sm</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:letterSpacing">0.04</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <style name="DS.TextAppearance.LabelSmall">
+        <item name="android:textSize">@dimen/ds_text_xs</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:letterSpacing">0.04</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <style name="DS.TextAppearance.SourceLabel">
+        <item name="android:textSize">@dimen/ds_text_xs</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:letterSpacing">0.08</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="DS.TextAppearance.BodyLarge">
+        <item name="android:textSize">@dimen/ds_text_lg</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:letterSpacing">0.031</item>
+        <item name="android:lineSpacingExtra">@dimen/ds_line_spacing_body</item>
+    </style>
+
+    <style name="DS.TextAppearance.BodyMedium">
+        <item name="android:textSize">@dimen/ds_text_md</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:letterSpacing">0.016</item>
+        <item name="android:lineSpacingExtra">@dimen/ds_line_spacing_body</item>
+    </style>
+
+    <style name="DS.TextAppearance.BodySmall">
+        <item name="android:textSize">@dimen/ds_text_sm</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:letterSpacing">0.025</item>
+        <item name="android:lineSpacingExtra">@dimen/ds_line_spacing_body</item>
+    </style>
+
+    <style name="DS.TextAppearance.Caption">
+        <item name="android:textSize">@dimen/ds_text_sm</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:letterSpacing">0.025</item>
+        <item name="android:textStyle">italic</item>
+    </style>
+
+    <style name="DS.TextAppearance.Overline">
+        <item name="android:textSize">@dimen/ds_text_xs</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:letterSpacing">0.15</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+
+</resources>
