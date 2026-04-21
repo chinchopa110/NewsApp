@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -43,6 +44,18 @@ class SduiFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.toolbarSdui.title = getString(com.example.newsapp.R.string.title_sdui)
+        updateThemeIcon()
+
+        binding.btnToggleTheme.setOnClickListener {
+            val isDarkMode = AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES
+            if (isDarkMode) {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            } else {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            }
+            updateThemeIcon()
+        }
+
         binding.btnRetry.setOnClickListener { viewModel.loadScreen() }
 
         viewLifecycleOwner.lifecycleScope.launch {
@@ -96,6 +109,15 @@ class SduiFragment : Fragment() {
                     Toast.makeText(requireContext(), action.message, Toast.LENGTH_SHORT).show()
                 }
             }
+        }
+    }
+
+    private fun updateThemeIcon() {
+        val isDarkMode = AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES
+        if (isDarkMode) {
+            binding.btnToggleTheme.setImageResource(com.example.newsapp.R.drawable.ic_sun)
+        } else {
+            binding.btnToggleTheme.setImageResource(com.example.newsapp.R.drawable.ic_moon)
         }
     }
 

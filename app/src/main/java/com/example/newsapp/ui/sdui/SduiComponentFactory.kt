@@ -8,7 +8,6 @@ import android.view.View
 import android.widget.LinearLayout
 import android.widget.Space
 import android.widget.TextView
-import androidx.core.content.ContextCompat
 import com.example.newsapp.R
 import com.example.newsapp.domain.model.Action
 import com.example.newsapp.domain.model.Align
@@ -137,11 +136,22 @@ class SduiComponentFactory(
     }
 
     private fun resolveColor(colorToken: ColorToken): Int {
-        return when (colorToken) {
-            ColorToken.PRIMARY -> ContextCompat.getColor(context, R.color.ds_color_primary)
-            ColorToken.ON_SURFACE -> ContextCompat.getColor(context, R.color.ds_color_on_surface)
-            ColorToken.ON_SURFACE_MEDIUM -> ContextCompat.getColor(context, R.color.ds_color_on_surface_medium)
-            ColorToken.ERROR -> ContextCompat.getColor(context, R.color.ds_color_error)
+        val attrRes = when (colorToken) {
+            ColorToken.PRIMARY -> com.google.android.material.R.attr.colorPrimary
+            ColorToken.ON_SURFACE -> com.google.android.material.R.attr.colorOnSurface
+            ColorToken.ON_SURFACE_MEDIUM -> android.R.attr.textColorSecondary
+            ColorToken.ERROR -> com.google.android.material.R.attr.colorError
+        }
+        return resolveThemeColor(attrRes)
+    }
+
+    private fun resolveThemeColor(attrRes: Int): Int {
+        val typedValue = TypedValue()
+        context.theme.resolveAttribute(attrRes, typedValue, true)
+        return if (typedValue.resourceId != 0) {
+            context.getColor(typedValue.resourceId)
+        } else {
+            typedValue.data
         }
     }
 

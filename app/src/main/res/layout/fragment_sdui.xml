@@ -17,7 +17,21 @@
             style="@style/DS.Widget.Toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            app:title="@string/title_sdui" />
+            app:title="@string/title_sdui">
+
+            <ImageButton
+                android:id="@+id/btnToggleTheme"
+                android:layout_width="@dimen/ds_icon_xl"
+                android:layout_height="@dimen/ds_icon_xl"
+                android:layout_gravity="end"
+                android:layout_marginEnd="@dimen/ds_space_4"
+                android:padding="@dimen/ds_space_5"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/ic_sun"
+                android:tint="?attr/colorOnPrimary"
+                android:contentDescription="@string/cd_toggle_theme" />
+
+        </androidx.appcompat.widget.Toolbar>
 
     </com.google.android.material.appbar.AppBarLayout>
 
