@@ -10,6 +10,10 @@
     <!-- Toolbar titles -->
     <string name="title_news">Daily News</string>
     <string name="title_blacklist">Blacklist management</string>
+    <string name="title_sdui">Hot news</string>
+    <string name="title_news_short">News</string>
+    <string name="title_blacklist_short">Blacklist</string>
+    <string name="title_sdui_short">Hot News</string>
 
     <!-- Blacklist section headers -->
     <string name="section_blocked_authors">Blocked Authors</string>
@@ -20,4 +24,7 @@
     <string name="label_read_more">Read full article:</string>
     <string name="btn_block_author">Block Author</string>
     <string name="btn_block_source">Block Source</string>
+
+    <!-- SDUI -->
+    <string name="action_retry">Retry</string>
 </resources>

@@ -30,4 +30,10 @@
         android:name="com.example.newsapp.ui.BlacklistFragment"
         android:label="Blacklist"
         tools:layout="@layout/fragment_blacklist" />
+
+    <fragment
+        android:id="@+id/sduiFragment"
+        android:name="com.example.newsapp.ui.SduiFragment"
+        android:label="SDUI"
+        tools:layout="@layout/fragment_sdui" />
 </navigation>
